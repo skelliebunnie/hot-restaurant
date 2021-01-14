@@ -1,6 +1,6 @@
 $("document").ready(function() {
-	// tables
-	$.ajax({
+  // tables
+  $.ajax({
     url: `/api/tables`,
     method: "GET"
   }).then(function(response) {
@@ -18,7 +18,7 @@ $("document").ready(function() {
   	}
   });
 
-  waitlist
+  // waitlist
   $.ajax({
     url: `/api/waitlist`,
     method: "GET"
