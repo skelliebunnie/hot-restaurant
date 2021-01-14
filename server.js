@@ -1,6 +1,7 @@
 const { resolveSoa } = require("dns");
 const express = require( "express" );
 const path = require( "path" );
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -99,9 +100,12 @@ app.get( "/api/waitlist", function( req, res ) {
 
 // Post route add reservation
 app.post("/api/addReservation", function(req, res){
+    console.log(req.body);
     const reservation = req.body;
 
-    if(reservationsListlength < 5){
+    reservation.id = reservationsList.length + waitList.length;
+
+    if(reservationsList.length < 5){
         reservationsList.push(reservation);
     }
     else{
