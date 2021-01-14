@@ -13,3 +13,7 @@ RESERVATION OBJECT
 user enters: name, phone number, email
 auto-generated: {reservationID}
 
+PAGES
+home
+view tables (tables)
+make reservation (reserve)
