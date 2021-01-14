@@ -82,7 +82,7 @@ const responseWaitList = {
 
 
 app.get( "/tables", function( req, res ) {
-    req.sendFile( path.join( __dirname, "tables.html" ));
+    res.sendFile( path.join( __dirname, "tables.html" ));
 })
 
 app.get( "/api/tables", function( req, res ) {
@@ -90,7 +90,7 @@ app.get( "/api/tables", function( req, res ) {
 })
 
 app.get( "/reserve", function( req, res ) {
-    req.sendFile( path.join( __dirname, "reserve.html" ));
+    res.sendFile( path.join( __dirname, "reserve.html" ));
 });
 
 app.get( "/api/waitlist", function( req, res ) {
