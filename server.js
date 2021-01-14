@@ -13,11 +13,70 @@ app.get( "/", function( req, res ) {
     res.end( "This is the restaurant page!" );
 })
 
-
 // TODO make reservations array
+const reservationsList = [
+    {
+        id: "1",
+        name: "John Doe",
+        phoneNumber: "555-555-5555",
+        email: "john@doe.com"
+    },
+    {
+        id: "2",
+        name: "John Doe",
+        phoneNumber: "555-555-5555",
+        email: "john@doe.com"
+    },
+    {
+        id: "3",
+        name: "John Doe",
+        phoneNumber: "555-555-5555",
+        email: "john@doe.com"
+    },
+    {
+        id: "4",
+        name: "John Doe",
+        phoneNumber: "555-555-5555",
+        email: "john@doe.com"
+    },
+    {
+        id: "5",
+        name: "John Doe",
+        phoneNumber: "555-555-5555",
+        email: "john@doe.com"
+    }
+];
+
+const waitList = [
+    
+    {
+        id: "6",
+        name: "John Doe",
+        phoneNumber: "555-555-5555",
+        email: "john@doe.com"
+    },
+    {
+        id: "7",
+        name: "John Doe",
+        phoneNumber: "555-555-5555",
+        email: "john@doe.com"
+    },
+    {
+        id: "8",
+        name: "John Doe",
+        phoneNumber: "555-555-5555",
+        email: "john@doe.com"
+    }
+]
 
 // TODO define response object
-// 
+const responseReservations = {
+    reservations: reservationsList
+}
+
+const responseWaitList = {
+    reservations: waitList
+}
 
 // TODO Get route tables
 
