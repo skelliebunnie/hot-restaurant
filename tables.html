@@ -11,6 +11,18 @@
     <script src="https://kit.fontawesome.com/f0d0ed7055.js" crossorigin="anonymous"></script>
 
     <title>Hot Restaurant: Make Reservation</title>
+
+    <style>
+    	.list-number {
+    		margin-right: 1rem;
+    		padding: 0.3rem 0.7rem;
+    		background-color: rebeccapurple;
+    		color: white;
+    		border-radius: 0.4rem;
+    	}
+
+    	#waitlist .list-number { background-color: orangered; }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -22,14 +34,14 @@
     		<a href="/" class="btn btn-purple-500 btn-lg"><i class="fad fa-home-lg"></i></a>
     	</header>
     	<main class="row">
-    		<section class="col col-md-10">
+    		<section class="col col-md-10" style="margin: 0 auto;">
     			<h3 class="text-center">Reservations</h3>
     			<ul class="list-group" id="reservations">
     			</ul>
     		</section>
     	</main>
     	<aside class="row">
-    		<section class="col col-md-10">
+    		<section class="col col-md-10" style="margin: 0 auto;">
     			<h3 class="text-center">Wait List</h3>
     			<ul class="list-group" id="waitlist">
     			</ul>
