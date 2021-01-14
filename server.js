@@ -16,7 +16,8 @@ app.get( "/", function( req, res ) {
 })
 
 // TODO make reservations array
-const reservationsList = [
+const masterList = [
+    
     {
         id: "1",
         name: "John Doe",
@@ -46,11 +47,7 @@ const reservationsList = [
         name: "John Doe",
         phoneNumber: "555-555-5555",
         email: "john@doe.com"
-    }
-];
-
-const waitList = [
-    
+    },
     {
         id: "6",
         name: "John Doe",
@@ -69,16 +66,13 @@ const waitList = [
         phoneNumber: "555-555-5555",
         email: "john@doe.com"
     }
-]
+];
 
-// TODO define response object
-const responseReservations = {
-    reservations: reservationsList
-}
+const reservationList = [...masterList].slice(0,5);
+console.log("reservationsList: ", reservationList);
 
-const responseWaitList = {
-    reservations: waitList
-}
+const waitList = [...masterList].slice(5, masterList.length);
+console.log("waitlist: ", waitList);
 
 
 app.get( "/tables", function( req, res ) {
@@ -104,15 +98,20 @@ app.post("/api/addReservation", function(req, res){
     const reservation = req.body;
 
     reservation.id = reservationsList.length + waitList.length;
-
-    if(reservationsList.length < 5){
-        reservationsList.push(reservation);
-    }
-    else{
-        waitList.push(reservation)
-    }
-
+    masterList.push(reservation)
     res.status(200).json(reservation)
+})
+
+app.delete("/api/deleteReservation", function(req, res){
+    console.log(req.body);
+
+    for(const i in masterList){
+        if(masterList[i].id === req.body.id){
+            masterList.slice(i, 1);
+        }
+    }
+
+    return res.status(200).end("Reservation deleted.")
 })
 
 app.listen( PORT, function() {
