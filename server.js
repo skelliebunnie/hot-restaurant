@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//TODO add public folder middleware
+app.use( express.static( "public" ))
 
 // TODO chenge to sendfile Angel's index
 app.get( "/", function( req, res ) {
