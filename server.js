@@ -1,3 +1,4 @@
+const { resolveSoa } = require("dns");
 const express = require( "express" );
 const path = require( "path" );
 
@@ -96,8 +97,19 @@ app.get( "/api/waitlist", function( req, res ) {
 })
 
 
-// TODO Post route add reservation
+// Post route add reservation
+app.post("/api/addReservation", function(req, res){
+    const reservation = req.body;
 
+    if(reservationsListlength < 5){
+        reservationsList.push(reservation);
+    }
+    else{
+        waitList.push(reservation)
+    }
+
+    res.status(200).json(reservation)
+})
 
 app.listen( PORT, function() {
     console.log( "Server is running!" );
