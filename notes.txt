@@ -1,0 +1,15 @@
+APIs
+api/tables
+	list of reserved tables (5 max)
+api/waitlist
+	list of people waiting
+
+ROUTES
+/
+/tables
+/reserve
+
+RESERVATION OBJECT
+user enters: name, phone number, email
+auto-generated: {reservationID}
+
