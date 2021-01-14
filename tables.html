@@ -13,6 +13,21 @@
     <title>Hot Restaurant: Make Reservation</title>
 
     <style>
+    	.list-group,
+    	.list-group-item {
+    		position: relative;
+    	}
+
+    	.list-group-item p {
+    		position: relative;
+    		display: inline-block;
+    	}
+
+    	.list-group-item > span:last-child {
+    		position: absolute;
+    		right: 1rem;
+    	}
+
     	.list-number {
     		margin-right: 1rem;
     		padding: 0.3rem 0.7rem;
@@ -21,11 +36,19 @@
     		border-radius: 0.4rem;
     	}
 
+  		.fa-trash {
+  			margin-right: 1rem;
+  			font-size: 1.5rem;
+  			top: 3px;
+  		}
+
+  		.fa-trash:hover { cursor: pointer; }
+
     	#waitlist .list-number { background-color: orangered; }
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container pb-5">
     	<header class="bg-cyan-500 py-4 px-4 text-center">
     		<h1 class="title text-white text-center px-5 py-5"><i class="fad fa-fire-alt fa-2x align-middle"></i> Hot Restaurant</h1>
     		<hr class="bg-white" style="height: 3px">
@@ -40,7 +63,7 @@
     			</ul>
     		</section>
     	</main>
-    	<aside class="row">
+    	<aside class="row mb-5">
     		<section class="col col-md-10" style="margin: 0 auto;">
     			<h3 class="text-center">Wait List</h3>
     			<ul class="list-group" id="waitlist">

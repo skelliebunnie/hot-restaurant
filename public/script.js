@@ -1,42 +1,49 @@
 $("document").ready(function() {
+	function buildLists(data) {
+		$("#reservations").empty();
+  	$("#waitlist").empty();
+
+		for(var i in data) {
+  		let listNum = parseInt(i) + 1;
+  		let item = $("<li>", {class: "list-group-item"});
+  		let icons = $("<p>");
+  		let num = $("<span>", {class: "list-number"});
+  		num.text(listNum);
+  		icons.append(num);
+  		icons.prepend(`<i class='fad fa-trash text-red-500' data-reservationID="${data[i].id}"></i>`);
+
+  		item.html(`<span>${data[i].name}</span> <span>{Reservation ID: ${data[i].id}}</span>`);
+  		item.prepend(icons);
+
+  		if(i < 5) {
+  			$("#reservations").append(item);
+  		} else {
+  			$("#waitlist").append(item);
+  		}
+  	}
+	}
+
   // tables
   $.ajax({
     url: `/api/tables`,
     method: "GET"
   }).then(function(response) {
-  	$("#reservations").empty();
-
-  	for(var i in response) {
-  		let listNum = parseInt(i) + 1;
-  		let item = $("<li>", {class: "list-group-item"});
-  		let num = $("<span>", {class: "list-number"});
-  		num.text(listNum);
-  		item.text(`${response[i].name} {${response[i].id}}`);
-  		item.prepend(num);
-  		item.append("<i class='fad fa-trash-alt'></i>");
-
-  		$("#reservations").append(item);
-  	}
+  	buildLists(response);  	
   });
 
-  // waitlist
-  $.ajax({
-    url: `/api/waitlist`,
-    method: "GET"
-  }).then(function(response) {
-  	$("#waitlist").empty();
+  $("body").on('click', '.fa-trash', function() {
+  	let reservationID = $(this).attr('data-reservationID');
 
-  	for(var i in response) {
-  		let listNum = parseInt(i) + 1;
-  		let item = $("<li>", {class: "list-group-item"});
-  		let num = $("<span>", {class: "list-number"});
-  		num.text(listNum);
-  		item.text(`${response[i].name} {${response[i].id}}`);
-  		item.prepend(num);
-  		item.append("<i class='fad fa-trash-alt'></i>");
-
-  		$("#waitlist").append(item);
-  	}
+  	$.ajax({ 
+  		url: `/api/deleteReservation/${reservationID}`,
+  		method: "DELETE" 
+  	}).then(function(response) {
+  		console.log(response);
+    	buildLists(response);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
   });
 
   $("#makeReservation").click(function(e) {

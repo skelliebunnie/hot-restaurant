@@ -16,81 +16,72 @@ app.get( "/", function( req, res ) {
 })
 
 // TODO make reservations array
-const masterList = [
-    
+let masterList = [
     {
         id: "1",
-        name: "John Doe",
-        phoneNumber: "555-555-5555",
-        email: "john@doe.com"
+        name: "Marcia Wright",
+        phoneNumber: "708-826-7233",
+        email: "MarciaSWright@dayrep.com"
     },
     {
         id: "2",
-        name: "John Doe",
-        phoneNumber: "555-555-5555",
-        email: "john@doe.com"
+        name: "Frank Kent",
+        phoneNumber: "706-213-7290",
+        email: "FrankCKent@armyspy.com"
     },
     {
         id: "3",
-        name: "John Doe",
-        phoneNumber: "555-555-5555",
-        email: "john@doe.com"
+        name: "Theresa Gregory",
+        phoneNumber: "239-949-7510",
+        email: "TheresaDGregory.jourrapide.com"
     },
     {
         id: "4",
-        name: "John Doe",
-        phoneNumber: "555-555-5555",
-        email: "john@doe.com"
+        name: "Salvador McGarvey",
+        phoneNumber: "919-310-7440",
+        email: "SalvadorRMcGarvey@jourrapide.com"
     },
     {
         id: "5",
-        name: "John Doe",
-        phoneNumber: "555-555-5555",
-        email: "john@doe.com"
+        name: "Nancy Wong",
+        phoneNumber: "816-803-8645",
+        email: "NancyLWong@dayrep.com"
     },
     {
         id: "6",
-        name: "John Doe",
-        phoneNumber: "555-555-5555",
-        email: "john@doe.com"
+        name: "Eddie Washington",
+        phoneNumber: "316-617-0354",
+        email: "EddieGWashington@rhyta.com"
     },
     {
         id: "7",
-        name: "John Doe",
-        phoneNumber: "555-555-5555",
-        email: "john@doe.com"
+        name: "Denise Schaefer",
+        phoneNumber: "316-436-4793",
+        email: "DeniseRSchaefer@jourrapide.com"
     },
     {
         id: "8",
-        name: "John Doe",
-        phoneNumber: "555-555-5555",
-        email: "john@doe.com"
+        name: "Teddy Hollingsworth",
+        phoneNumber: "803-880-2391",
+        email: "TeddyMHollingsworth@teleworm.us"
     }
 ];
 
-const reservationList = [...masterList].slice(0,5);
-console.log("reservationsList: ", reservationList);
-
-const waitList = [...masterList].slice(5, masterList.length);
-console.log("waitlist: ", waitList);
-
+let reservationsList = masterList.slice(0,5);
+let waitList = masterList.slice(5, masterList.length);
 
 app.get( "/tables", function( req, res ) {
     res.sendFile( path.join( __dirname, "tables.html" ));
-})
-
-app.get( "/api/tables", function( req, res ) {
-    return res.json( reservationsList );
-})
+});
 
 app.get( "/reserve", function( req, res ) {
     res.sendFile( path.join( __dirname, "reserve.html" ));
 });
 
-app.get( "/api/waitlist", function( req, res ) {
-    return res.json( waitList );
+app.get( "/api/tables", function( req, res ) {
+    // return res.json( reservationsList );
+    return res.json( masterList );
 });
-
 
 // Post route add reservation
 app.post("/api/addReservation", function(req, res){
@@ -99,20 +90,20 @@ app.post("/api/addReservation", function(req, res){
 
     reservation.id = reservationsList.length + waitList.length;
     masterList.push(reservation);
+
     res.status(200).json(reservation);
 });
 
+// Delete route remove reservation
+app.delete("/api/deleteReservation/:id", function(req, res){
 
-app.delete("/api/deleteReservation", function(req, res){
-    console.log(req.body);
-
-    for(const i in masterList) {
-        if(masterList[i].id === req.body.id) {
-            masterList.slice(i, 1);
-        }
+  for(var i in masterList) {
+    if(masterList[i].id === req.params.id) {
+      masterList.splice(i, 1);
     }
+  }
 
-    return res.status(200).json({status: "deleted"})
+  return res.status(200).json( masterList );
 });
 
 app.listen( PORT, function() {
