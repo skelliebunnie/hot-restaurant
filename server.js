@@ -10,22 +10,29 @@ app.use(express.json());
 
 // TODO chenge to sendfile Angel's index
 app.get( "/", function( req, res ) {
-    res.end( "This is the restaurant page!" );
+    res.sendFile( path.join( __dirname, "index.html" ));
 })
-
 
 // TODO make reservations array
 
 // TODO define response object
-// 
-
-// TODO Get route tables
 
 
-// TODO Get route  Reserve
+app.get( "/tables", function( req, res ) {
+    req.sendFile( path.join( __dirname, "tables.html" ));
+})
 
+app.get( "/api/tables", function( req, res ) {
+    return res.json( tables );
+})
 
-// TODO Get send json info
+app.get( "/reserve", function( req, res ) {
+    req.sendFile( path.join( __dirname, "reserve.html" ));
+});
+
+app.get( "/api/waitlist", function( req, res ) {
+    return res.json( waitlist );
+})
 
 
 // TODO Post route add reservation
