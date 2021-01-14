@@ -50,7 +50,7 @@ $("document").ready(function() {
 
   	if($("#name").val() !== "") {
   		$.post(window.location.origin + "/api/addReservation", newReservation, function(data) {
-	  		if(data.result === "true") {
+	  		if(data.id <= 5) {
 	  			alert("You're officially booked!");
 	  		} else {
 	  			alert("Sorry, you're on the waitlist");
