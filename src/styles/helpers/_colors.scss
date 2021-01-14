@@ -1,6 +1,66 @@
+@import "a11y-color";
+
 @each $name, $color in $colors {
-	@debug $name;
 	.bg-#{$name} {
 		background-color: $color;
+	}
+}
+
+@for $i from 1 through 9 {
+	$tint: 100%; $shade: 0%;
+	@if $i < 5 {
+		$tint: $tint - 20%;
+	} @else {
+		$shade: $shade + 20;
+	}
+
+	@each $name, $color in $colors {
+		@if $i < 5 {
+			$newColor: tint-color($color, $tint);
+			
+			.bg-#{$name}-#{$i}00 {
+				background-color: $newColor;
+			}
+
+			.text-#{$name}-#{$i}00 {
+				color: $newColor;
+			}
+
+			.btn-#{$name}-#{$i}00 {
+				background-color: $newColor;
+				color: a11y-color(white, $newColor);
+			}
+		}
+
+		@if $i == 5 {
+			.bg-#{$name}-500 {
+				background-color: $color;
+			}
+			.text-#{$name}-500 {
+				color: $color;
+			}
+			.btn-#{$name}-500 {
+				background-color: $color;
+				color: a11y-color(white, $color);
+			}
+		}
+
+		@if $i > 5 {
+			$newColor: shade-color($color, $shade);
+
+			.bg-#{$name}-#{$i}00 {
+				background-color: $newColor;
+			}
+
+			.text-#{$name}-#{$i}00 {
+				color: $newColor;
+			}
+
+			.btn-#{$name}-#{$i}00 {
+				background-color: $newColor;
+				color: a11y-color(black, $newColor);
+			}
+		}
+		
 	}
 }
