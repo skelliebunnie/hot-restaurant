@@ -8,14 +8,14 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use( express.static( "public" ))
+app.use( express.static( "public" ));
 
-// TODO chenge to sendfile Angel's index
+// TODO:DONE change to sendfile Angel's index
 app.get( "/", function( req, res ) {
-    res.sendFile( path.join( __dirname, "index.html" ));
+  res.sendFile( path.join( __dirname, "index.html" ));
 })
 
-// TODO make reservations array
+// TODO:DONE make reservations array
 let masterList = [
     {
         id: "1",
