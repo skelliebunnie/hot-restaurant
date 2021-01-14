@@ -101,6 +101,8 @@ app.get( "/api/waitlist", function( req, res ) {
 app.post("/api/addReservation", function(req, res){
     const reservation = req.body;
 
+    reservation.id = reservationsList.length + waitList.length;
+
     if(reservationsListlength < 5){
         reservationsList.push(reservation);
     }
