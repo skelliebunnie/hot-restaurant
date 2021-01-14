@@ -107,12 +107,12 @@ app.post("/api/addReservation", function(req, res){
 
     if(reservationsList.length < 5){
         reservationsList.push(reservation);
+        res.send(200, {"result": true});
     }
     else{
-        waitList.push(reservation)
+        waitList.push(reservation);
+        res.send(200, {"result": false});
     }
-
-    res.status(200).json(reservation)
 })
 
 app.listen( PORT, function() {

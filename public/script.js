@@ -13,6 +13,7 @@ $("document").ready(function() {
   		num.text(listNum);
   		item.text(`${response[i].name} {${response[i].id}}`);
   		item.prepend(num);
+  		item.append("<i class='fad fa-trash-alt'></i>");
 
   		$("#reservations").append(item);
   	}
@@ -32,8 +33,33 @@ $("document").ready(function() {
   		num.text(listNum);
   		item.text(`${response[i].name} {${response[i].id}}`);
   		item.prepend(num);
+  		item.append("<i class='fad fa-trash-alt'></i>");
 
   		$("#waitlist").append(item);
+  	}
+  });
+
+  $("#makeReservation").click(function(e) {
+  	e.preventDefault();
+
+  	var newReservation = {
+  		name: $("#name").val().trim(),
+  		phoneNumber: $("#phoneNumber").val().trim(),
+  		email: $("#email").val().trim()
+  	};
+
+  	if($("#name").val() !== "") {
+  		$.post(window.location.origin + "/api/addReservation", newReservation, function(data) {
+	  		if(data.result === "true") {
+	  			alert("You're officially booked!");
+	  		} else {
+	  			alert("Sorry, you're on the waitlist");
+	  		}
+
+	  		$("#name").val("");
+	  		$("#email").val("");
+	  		$("#phoneNumber").val("");
+	  	});
   	}
   });
 });
